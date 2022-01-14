@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+import Augmentor
+import torchvision
+import matplotlib.pyplot as plt
+%matplotlib inline
+from skimage.io import imread, imshow
+image = imread('9.gif', as_gray=True)
+imshow(image)
+image.shape, image
+features = np.reshape(image,(100*100))
+features.shape, features
+a = list(features)
+b = list(features)
+c = np.array(b) - np.array(a)
+p.rotate(probability=0.7, max_left_rotation=10, max_right_rotation=10)
+p.zoom(probability=0.5, min_factor=1.1, max_factor=1.5)
+p.sample(1000)
+p.process()
+p.sample(100, multi_threaded=False)
+p = Augmentor.Pipeline("/path/to/images")
+p.ground_truth("/path/to/ground_truth_images")
+p.rotate(probability=1, max_left_rotation=5, max_right_rotation=5)
+p.flip_left_right(probability=0.5)
+p.zoom_random(probability=0.5, percentage_area=0.8)
+p.flip_top_bottom(probability=0.5)
+p.sample(50)
+p = Augmentor.DataPipeline(images, y)
+p.rotate(1, max_left_rotation=5, max_right_rotation=5)
+p.flip_top_bottom(0.5)
+p.zoom_random(1, percentage_area=0.5)
+augmented_images, labels = p.sample(100)
+g = p.keras_generator(batch_size=128)
+images, labels = next(g)
+transforms = torchvision.transforms.Compose([
+    p.torch_transform(),
+    torchvision.transforms.ToTensor(),
+])
+p.random_distortion(probability=1, grid_width=4, grid_height=4, magnitude=8)
+p.flip_left_right(probability=0.5)
+p.flip_top_bottom(probability=0.5)
+p.sample(100)
+p.rotate90(probability=0.5)
+p.rotate270(probability=0.5)
+p.flip_left_right(probability=0.8)
+p.flip_top_bottom(probability=0.3)
+p.crop_random(probability=1, percentage_area=0.5)
+p.resize(probability=1.0, width=120, height=120)
